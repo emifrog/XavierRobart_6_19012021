@@ -73,7 +73,7 @@ h1>a{
 }
 
 .photographerContainer{
-    width: 21rem;
+    width: 22rem;
     margin: 0.5rem;
     padding: 0.3rem;
 }
@@ -81,7 +81,7 @@ h1>a{
 .portraitBox{
     width: 11rem;
     height: 11rem;
-    background-color: rgb(89, 206, 38);
+    background-color: rgb(255, 255, 255);
     margin: 0 auto;
     border-radius: 50%;
     overflow: hidden;

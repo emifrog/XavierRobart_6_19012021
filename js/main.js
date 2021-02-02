@@ -5,7 +5,7 @@ function grabTheDataFromJSON(){
       .then(response => response.json())
       .then(dataJson => { 
           displayPhotographers(dataJson); //appel de la fonction 
-          displayByDefault(dataJson)      //appel de la fonction 
+          displayByDefault(dataJson)       
       }).catch(error => console.error)
   };
   
@@ -15,7 +15,7 @@ function grabTheDataFromJSON(){
 
 function displayByDefault(dataJson){
     console.log(dataJson)
-    dataJson.photographers.forEach(photographe => { 
+    dataJson.photographers.forEach(photographe => {           //exécute une fonction donnée sur chaque élément du tableau
       const photographersDiv = document.getElementById('container');
       const div = document.createElement("div");  //methode pour creer un element html
       const photographerTemplate = `
@@ -36,3 +36,26 @@ function displayByDefault(dataJson){
       div.innerHTML = photographerTemplate;  //recupere la syntaxe HTML
     }); 
   };
+
+// Fonction ACTIVE en clickant sur le bouton
+
+function addActiveClass(){
+  const buttons = document.querySelectorAll(".filters_container span");
+  buttons.forEach(btn => btn.addEventListener("click", () => {
+    buttons.forEach(btn => btn.classList.remove('active'));
+    btn.classList.add('active');
+  }));
+}
+addActiveClass();
+
+// Ajoute un événement à chaque click
+
+function displayPhotographers(dataJson){
+  const buttons = document.querySelectorAll(".filters_container span");
+  buttons.forEach(btn => btn.addEventListener("click", () => {
+    const photographersDiv = document.getElementById('container');
+    photographersDiv.innerHTML = "";                      
+    filterElements(dataJson, btn, photographersDiv); 
+  }));
+};
+
