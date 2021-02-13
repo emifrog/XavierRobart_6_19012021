@@ -3,7 +3,7 @@
 fetch('./../JSON.json')
     .then((response) => response.json())
     .then(JsonData => {
-          photographerProfil(JsonData)
+          photographerProfil(JsonData)  //appel de la fonction
           openLightBox(JsonData)          
           incrementLikesOnClick() 
     }).catch(error => console.error)
@@ -31,7 +31,7 @@ function photographerProfil(JsonData){
             `
             newDiv.innerHTML = profilTemplate;
             domDiv.appendChild(newDiv);
-            showModal(); 
+            showModal(element); 
             photographerWork(JsonData, element)
       }) 
 }
