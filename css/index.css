@@ -2,7 +2,7 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 
-h1>a{
+h1 a{
     text-decoration: none;
     color: #901C1C;
 }
@@ -14,13 +14,13 @@ h1>a{
     margin-bottom: 1rem;
 }
 
-.header_container>h1{
+.header_container h1{
     color: #901C1C;
     font-size: 2.5rem;
     font-family: 'Open Sans', sans-serif;
 }
 
-.filters_container{
+.filtres{
     margin-top: auto;
     margin-bottom: auto;
     display: flex;
@@ -28,7 +28,7 @@ h1>a{
     justify-content: center;
 }
 
-.filters_container>span{
+.filtres span{
     border: 1px solid #C4C4C4;
     border-radius: 15px;
     padding: 0.2rem 0.4rem;
@@ -38,28 +38,36 @@ h1>a{
     font-weight: 600;
 }
 
-.filters_container>span:hover{
+.individual-tags{
+    cursor: pointer;
+    background-color: white;
+}
+
+.individual-tags:hover {
+    background-color: #901C1C;
+    color: white;
+}
+
+.filtres span:hover{
     background-color: #901C1C;
     color: white;
 }
 
 .active{
-    background-color: #901C1C;
+    background-color: #901C1C !important;
     color: white !important;
 }
 
-
-.header_container>h2{
+.header_container h2{
     color: #901C1C;
     margin-top: auto;
     margin-bottom: auto;
     font-size: 1.5rem;
 }
 
+/*Photographes Container */
 
-/* Photographers container */
-
-#container{
+#photographes_container{
     width: 100%;
     height: auto;
     background-color: rgb(255, 255, 255);
@@ -77,7 +85,7 @@ h1>a{
     padding: 0.3rem;
 }
 
-.portraitBox{
+.portrait{
     width: 11rem;
     height: 11rem;
     background-color: rgb(255, 255, 255);
@@ -86,12 +94,13 @@ h1>a{
     overflow: hidden;
     box-shadow: 1px 2px 17px 3px grey;
 }
-.portraitBox:hover{
+
+.portrait:hover{
     box-shadow: 0px 0px 30px 1px rgb(92, 90, 90);
     cursor: pointer;
 }
 
-.portraitBox>img{
+.portrait img{
     width: 100%;
     height: 100%; 
     object-fit: cover;
@@ -122,38 +131,38 @@ h1>a{
     margin: 0 !important;
 }
 
-.tag {
+.tag{
     border: 1px solid #C4C4C4;
     border-radius: 20px; 
     padding: 0.2rem 0.4rem;
     color: #901C1C;
 }
 
-.photographerContainer>a{
+.photographerContainer a{
     text-decoration: none;
 }
+
 
 @media screen and (max-width: 950px){
     
     .header_container{
         justify-content: space-between;
     }
-    .header_container>h1{
+    .header_container h1{
         font-size: 2.5rem;
     }
     
-    .header_container>h2{
+    .header_container h2{
         order: 2;
         font-size: 1rem;
     }
-    .filters_container{
+    .filtres{
         order: 3;
         margin-bottom: 1.5rem;
         margin: auto;
         margin-bottom: 1.5rem;
     }
-    .filters_container>span{
+    .filtres span{
         margin: 0.1rem;
     }
-
 }

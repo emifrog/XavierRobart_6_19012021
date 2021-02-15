@@ -8,7 +8,7 @@ fetch('./../JSON.json')
           incrementLikesOnClick() 
     }).catch(error => console.error)
 
-// Profil //
+// Photographe //
 
 function photographerProfil(JsonData){
       const id = window.location.search.split('id=')[1];  
@@ -31,7 +31,51 @@ function photographerProfil(JsonData){
             `
             newDiv.innerHTML = profilTemplate;
             domDiv.appendChild(newDiv);
-            showModal(element); 
-            photographerWork(JsonData, element)
+            showModal(element);
+            let sum = photographerWork(JsonData.media)     // appel de la fonction 
+            likesAndPrice(sum, photographerPrix);    //appel de la fonction
       }) 
+}
+
+// Profile //
+
+function photographerWork(media){
+      let sum = 0;
+      homeElt = window.location.search.split('id=')[1];  
+        media.forEach(element => {   
+        if(homeElt == element.photographerId){
+          const domDiv = document.getElementById('photographe-profile');
+          const newDiv = document.createElement("div");
+          sum += element.likes;
+          const workTemplate = `         
+            <div class="profile-photo"> 
+                <div class="photo" data-id=${element.id}>
+                    ${videoOrImage(element.image, element.video, element)}
+                </div>   
+                <div class="text">
+                    <p> ${element.photoName}<b>${element.price} €  &nbsp <span class='profile-photo-info'>${element.likes}</span> <i class="fas fa-heart heartIcon"></i></b></p>
+                </div>
+            </div>
+            `
+          newDiv.innerHTML = workTemplate;
+          domDiv.appendChild(newDiv);
+          if ( 'image' in element) {currentPhotographerPhotos.push(element.image);}
+          likesTable.push(element.likes);
+        }})
+        handleNextPrevButtons();
+        return sum;  
+}
+
+// Like et Prix //
+
+function likesAndPrice(sum, photographerPrix){
+      const domDiv = document.getElementById('photographer-profile');
+      const newDiv = document.createElement("div");
+      const likesAndPrixTemplate = `
+      <div id='likesBox' class="Likes">${sum}<i class="fas fa-heart"></i></div>
+      <div class="Price">${photographerPrix}€ / jour</div>  
+      `
+        newDiv.classList.add('likesAndPriceContainer')
+        newDiv.innerHTML = likesAndPrixTemplate;
+        domDiv.appendChild(newDiv)
 }
