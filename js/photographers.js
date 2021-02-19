@@ -33,7 +33,7 @@ function photographerProfil(JsonData){
         <p>${element.city}, ${element.country}</p>
         <p class="tagline">${element.tagline}</p>
         <p >${element.tags.map(tag => `<a  id="cursorAjout" href="index.html?id=${tag}" class='tags'>#${tag}</a>`).join(" ")}</p>
-        <button id="test">Contactez-moi</button>
+        <button id="form">Contactez-moi</button>
         <div class="photoBox">
             <img src="${element.portrait}" alt="photo">
         </div>
@@ -197,7 +197,7 @@ form.addEventListener("submit", (e) => {
 
 function showModal(element){
 
-  document.getElementById("test").addEventListener('click', () => {
+  document.getElementById("form").addEventListener('click', () => {
     const formModal = document.getElementById('form-container');
     formModal.style.display = "block";
     const nameOfThePhotographe = document.getElementById('nameOfThePhotopgraphe');
