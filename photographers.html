@@ -7,34 +7,78 @@
     <meta name="keywords" content="">
     <title>FishEye</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/photographers.css">
 </head>
-<body>
+<body>  
+
     <header>
         <h1><a href="index.html"> Fish<i class="fas fa-camera"></i>ye</a></h1>
     </header>
 
     <main>
-        <div id="photographe"></div>
 
+        <!-- Profile -->
+        <div id="photographer-container"></div>
         <span class="trier">Trier par</span>
 
-        <div class="dropdown">
-            <i class="fas fa-chevron-down" id="dropdown-btn"></i>
-            <button class="drop-btn">Popularité</button>
-            <i class="fas fa-chevron-up fa-chevron-up-NO" id="close-up-icon"></i>
-            <div class="dropdown-content">
-                <a href="#" class="trier-btn">Date</a>
-                <a href="#" class="trier-btn">Titre</a>
+            <div class="dropdown-open">
+                <i class="fas fa-chevron-down" id="dropdown-btn"></i>
+                <button  class="dropbtn trierBtn">Popularité</button>
+                <i class="fas fa-chevron-up fa-chevron-up-NO" id="close-up-icon"></i>
+
+                <div id="dropdown-trier" class="dropdown-content">
+                    <a href="#" class="trierBtn">Date</a>
+                    <a href="#" class="trierBtn">Titre</a>
+                </div>
+
+            </div>
+
+        <!-- Photos -->
+        <div id="photographers"></div>
+
+        <!-- Lightbox -->
+
+        <div id="lightbox-container">
+            <div id="lightbox-body">
+                <i class="fas fa-times closeIcon"></i>
+                <i class="fas fa-chevron-left leftIcon"></i>
+                <i class="fas fa-chevron-right rightIcon"></i>
+                <div id="photographers-photos"></div>
             </div>
         </div>
 
-        <div id="photographe-profile"></div>
+        <!--  Contact -->
+        
+        <div id="form-container">
+            <div class="form-container">
+                <h1>Contactez-moi</h1>
+                <p id="nameOfThePhotopgraphe"></p>
+                <form>
+                    <p id="X-button"><i class="fas fa-times"></i></p>
+                    <label>Prénom</label><br>
+                    <input id="prenom" type="text"><br>
+
+                    <p class="error" id="error-prenom"></p>
+                    <label>Nom</label><br>
+                    <input id="nom" type="text"><br>
+
+                    <p class="error" id="error-nom"></p>
+                    <label>Email</label><br>
+                    <input id="email" type="text"><br>
+
+                    <p class="error" id="error-email"></p>
+                    <label>Votre Message</label><br>
+                    <input id="message" type="text" class="votre-message-box"><br>
+
+                    <p class="error" id="error-message"></p>
+                    <button>Envoyer</button>
+                </form>
+            </div>
+        </div>
+
     </main>
 
-
     <script src="js/photographers.js"></script>
+
 </body>
 </html>
