@@ -1,4 +1,3 @@
-
 // GLOBAL VARIABLES //
 let currentPhotographerPhotos = [];
 let currentLigthboxIndex = -1;
@@ -120,11 +119,13 @@ document.getElementById("close-up-icon").addEventListener('click', () => {
 function openLightBox() {
   const getPhotos = Array.from(document.getElementsByClassName('photo'));
     getPhotos.forEach((photo, index) => photo.addEventListener("click", () => {
-      currentLigthboxIndex = index;
+
       const photographersphotos = document.getElementById('photographers-photos');
       const lightboxcontainer = document.getElementById('lightbox-container');
+      const src = currentPhotographerPhotos[index];
+
       lightboxcontainer.style.display = 'block';
-      const src = currentPhotographerPhotos[index];      
+      currentLigthboxIndex = index;   
       photographersphotos.innerHTML = `<img src="${src}" />`;     
     }))
 }
