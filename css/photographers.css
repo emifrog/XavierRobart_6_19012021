@@ -136,7 +136,7 @@ h1 a {
     cursor: pointer;
 }
 
-#X-button{
+#close-button{
     position: absolute;
     top: -0.9rem;
     right: 1rem;
@@ -271,7 +271,7 @@ h1 a {
     color: #901C1C;
 }
 
-#photoName{
+#photo{
     position: absolute;
     left: 10%;
     padding: 0.5rem 0rem;
@@ -332,7 +332,7 @@ div .Price{
     font-weight: 600;
 }
 
-#nameOfThePhotopgraphe{
+#name-photographe{
     font-size: 2rem;
     margin-top: 0rem;
 }
@@ -427,7 +427,7 @@ div .Price{
         text-decoration: none;
         margin-left: 1rem;
     }
-    .profil-container>button{
+    .profil-container button{
         position: fixed;
         bottom: 0rem;
         left: 50%;

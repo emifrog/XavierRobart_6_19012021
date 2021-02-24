@@ -5,7 +5,7 @@ let likesTable = [];
 let existingLikes = [];
 let modifiedArray = [];
 let JsonDATA;
-let photoName = [];
+let nomphoto = [];
 
 // Methode Fetch //
 
@@ -65,13 +65,13 @@ function photographerWork(media){
                 ${videoOrImage(element.image, element.video, element)}
             </div>   
             <div class="text">
-                <p> ${element.photoName}<b>${element.price} €  &nbsp <span class='under-photo-info'>${element.likes}</span> <i class="fas fa-heart heartIcon"></i></b></p>
+                <p> ${element.photo}<b>${element.price} €  &nbsp <span class='photo-info'>${element.likes}</span> <i class="fas fa-heart heartIcon"></i></b></p>
             </div>
         </div>
         `
       newDiv.innerHTML = workTemplate;
       domDiv.appendChild(newDiv);
-      if ( 'image' in element) {currentPhotographerPhotos.push(element.image), photoName.push(element.photoName)}
+      if ( 'image' in element) {currentPhotographerPhotos.push(element.image), nomphoto.push(element.photo)}
       likesTable.push(element.likes);
     }})
     handleNextPrevButtons();
@@ -82,7 +82,7 @@ function photographerWork(media){
 
 function videoOrImage(image, video, element) {
   if ('image' in element){
-    return ` <img class="photos" aria-label="photo ${element.photoName}" src="${image}"> `
+    return ` <img class="photos" aria-label="photo ${element.nomphoto}" src="${image}"> `
   }
   else if ('video' in element){
     return ` <iframe src="${video}" width="285px" height="255px" controls=0></iframe>`
@@ -112,7 +112,7 @@ function incrementLikesOnClick() {
     // if the index of current photo is in the Arrey RETURN the index and stop executin IF NOT run the code block
     if (existingLikes.includes(index)) {return }
     else{
-      const individualLikeBox = document.getElementsByClassName('under-photo-info');
+      const individualLikeBox = document.getElementsByClassName('photo-info');
       const totalLikesDivBox = document.getElementById("likesBox");
       likeIcon.classList.add('activeRed');
   
@@ -129,9 +129,9 @@ function incrementLikesOnClick() {
   }))
 }
 
-// TRIER PAR Filter //
+// TRIER PAR //
 
-// OPEN
+// OPEN //
 
 document.getElementById('dropdown-btn').addEventListener('click', () => {
   const hidenPart = document.getElementById("dropdown-trier");
@@ -142,7 +142,7 @@ document.getElementById('dropdown-btn').addEventListener('click', () => {
       chevronDownIcon.classList.toggle("fa-chevron-up-NO");
 })
 
-// CLOSE
+// CLOSE //
 
 document.getElementById("close-up-icon").addEventListener('click', () => {
   const hidenPart = document.getElementById("dropdown-trier");
@@ -153,12 +153,13 @@ document.getElementById("close-up-icon").addEventListener('click', () => {
       chevronDownIcon.classList.toggle("fa-chevron-up-NO");
 })
 
-// Trier par ...
+// Trier par ... //
+
 const trierParButtons = Array.from(document.getElementsByClassName('trierBtn'));
 trierParButtons.forEach((btn, index) => btn.addEventListener('click', () => {
   
   if( index == 0) {
-    //////////// sort by POPULARITY //////////////   
+    // Popularite //  
     modifiedArray = JsonDATA.media.sort((a, b) => {return b.likes - a.likes})
     document.getElementById("photographers").innerHTML = "";
     likesTable = [];
@@ -167,8 +168,9 @@ trierParButtons.forEach((btn, index) => btn.addEventListener('click', () => {
     openLightBox(JsonDATA)
     incrementLikesOnClick()
             
-  }else if (index == 1) {
-    /////////// sort by DATE /////////////////////    
+  }
+  else if (index == 1) {
+    // Date //    
     modifiedArray = JsonDATA.media.sort((a, b) => { return new Date(a.date).valueOf() - new Date(b.date).valueOf();}) 
     document.querySelector("#photographers").innerHTML = "";;
     likesTable = [];
@@ -177,11 +179,12 @@ trierParButtons.forEach((btn, index) => btn.addEventListener('click', () => {
     openLightBox(JsonDATA)
     incrementLikesOnClick()
 
-  }else if ( index == 2) {
-    ////////////// sort by ALFABETIC ORDER ///////
+  }
+  else if ( index == 2) {
+    // Titre //
     modifiedArray = JsonDATA.media.sort((a, b) => {
-    if(a.photoName.toLowerCase() < b.photoName.toLowerCase()) { return -1;}
-    else if (a.photoName.toLowerCase() > b.photoName.toLowerCase()) {return 1;}
+    if(a.nomphoto.toLowerCase() < b.nomphoto.toLowerCase()) { return -1;}
+    else if (a.nomphoto.toLowerCase() > b.nomphoto.toLowerCase()) {return 1;}
     })
         document.querySelector("#photographers").innerHTML = "";;
         likesTable = [];
@@ -190,7 +193,7 @@ trierParButtons.forEach((btn, index) => btn.addEventListener('click', () => {
         openLightBox(JsonDATA)
         incrementLikesOnClick()
 
-    }
+  }
 }));
 
 // LIGHTBOX //
@@ -203,13 +206,14 @@ function openLightBox() {
 
       const photographersphotos = document.getElementById('photographers-photos');
       const lightboxcontainer = document.getElementById('lightbox-container');
-      const photoNaneDom = document.getElementById('photoName');
+      const nomphotoDom = document.getElementById('photo');
       const src = currentPhotographerPhotos[index];
-      const nameSrc = photoName[index];  
+      const nameSrc = nomphoto[index];
+      
       lightboxcontainer.style.display = 'block';
       currentLigthboxIndex = index;   
       photographersphotos.innerHTML = `<img src="${src}" />`;
-      photoNaneDom.innerHTML = `${nameSrc}`  
+      nomphotoDom.innerHTML = `${nameSrc}`  
     }))
 }
 
@@ -219,7 +223,7 @@ function handleNextPrevButtons() {
   const previousBtn = document.querySelector('.leftIcon');
   const nextBtn = document.querySelector('.rightIcon');
   const photographersphotos = document.getElementById('photographers-photos');
-  const photoNaneDom = document.getElementById('photoName');
+  const nomphotoDom = document.getElementById('photo');
 
   previousBtn.addEventListener('click', () => {
     currentLigthboxIndex -= 1;
@@ -230,10 +234,10 @@ function handleNextPrevButtons() {
     photographersphotos.innerHTML = `<img src="${src}" />`; 
 
     if (currentLigthboxIndex < 0){
-      currentLigthboxIndex = photoName.length - 1;
+      currentLigthboxIndex = nomphoto.length - 1;
     }
-    const nameSrc = photoName[currentLigthboxIndex]; 
-    photoNaneDom.innerHTML = `${nameSrc}` 
+    const nameSrc = nomphoto[currentLigthboxIndex]; 
+    nomphotoDom.innerHTML = `${nameSrc}` 
   });
 
   nextBtn.addEventListener('click', () => {
@@ -244,13 +248,60 @@ function handleNextPrevButtons() {
     const src = currentPhotographerPhotos[currentLigthboxIndex];
     photographersphotos.innerHTML = `<img src="${src}" />`;
 
-    if (currentLigthboxIndex > photoName.length - 1){
+    if (currentLigthboxIndex > nomphoto.length - 1){
       currentLigthboxIndex = 0;    
    }
-   const nameSrc = photoName[currentLigthboxIndex]; 
-   photoNaneDom.innerHTML = `${nameSrc}`
+   const nameSrc = nomphoto[currentLigthboxIndex]; 
+   nomphotoDom.innerHTML = `${nameSrc}`
   })
 }
+
+// Defilement des photos au clavier //
+document.addEventListener('keydown', (key) => {
+
+
+  // Button Esc //
+  if(key.code == "Escape"){
+    const lightboxcontainer = document.getElementById('lightbox-container');
+    lightboxcontainer.style.display = 'none';
+  }
+
+  // Fleche Droite //
+  else if(key.code == "ArrowRight"){
+    const nomphotoDom = document.getElementById('photo');
+
+    currentLigthboxIndex += 1;
+    if (currentLigthboxIndex > currentPhotographerPhotos.length - 1) {
+      currentLigthboxIndex = 0;
+    }
+    const src = currentPhotographerPhotos[currentLigthboxIndex];
+    photographersphotos.innerHTML = `<img src="${src}" />`;
+    
+    if (currentLigthboxIndex > nomphoto.length - 1){
+      currentLigthboxIndex = 0;    
+   }
+   const nameSrc = nomphoto[currentLigthboxIndex]; 
+   nomphotoDom.innerHTML = `${nameSrc}`
+  }
+
+  // Fleche Gauche //
+  else if(key.code == "ArrowLeft"){
+    const nomphotoDom = document.getElementById('photo');
+
+    currentLigthboxIndex -= 1;
+    if (currentLigthboxIndex < 0) {
+      currentLigthboxIndex = currentPhotographerPhotos.length - 1;
+    }
+    const src = currentPhotographerPhotos[currentLigthboxIndex];
+    photographersphotos.innerHTML = `<img src="${src}" />`; 
+
+    if (currentLigthboxIndex < 0){
+      currentLigthboxIndex = nomphoto.length - 1;
+    }
+    const nameSrc = nomphoto[currentLigthboxIndex]; 
+    nomphotoDom.innerHTML = `${nameSrc}` 
+  }
+});
 
 // Close //
 
@@ -262,58 +313,6 @@ function closeLightBox(){
     })
 }
 closeLightBox()
-
-////// lightBox using keyboard
-document.addEventListener('keydown', (key) => {
-
-  //ENTER KEY
-  if(key.code == "Enter") {
-
-  }
-
-  //Esc KEY
-  else if(key.code == "Escape"){
-    const lightBoxcontainer = document.getElementById('lightBoxContainer');
-    lightBoxcontainer.style.display = 'none';
-  }
-
-  //ArrowRight KEY
-  else if(key.code == "ArrowRight"){
-    const photoNaneDom = document.getElementById('photoName');
-
-    currentLigthboxIndex += 1;
-    if (currentLigthboxIndex > currentPhotographerPhotos.length - 1) {
-      currentLigthboxIndex = 0;
-    }
-    const src = currentPhotographerPhotos[currentLigthboxIndex];
-    photoPlaceHolder.innerHTML = `<img src="${src}" />`;
-    
-    if (currentLigthboxIndex > photoName.length - 1){
-      currentLigthboxIndex = 0;    
-   }
-   const nameSrc = photoName[currentLigthboxIndex]; 
-   photoNaneDom.innerHTML = `${nameSrc}`
-  }
-
-  //ArrowLeft KEY
-  else if(key.code == "ArrowLeft"){
-    const photoNaneDom = document.getElementById('photoName');
-
-    currentLigthboxIndex -= 1;
-    if (currentLigthboxIndex < 0) {
-      currentLigthboxIndex = currentPhotographerPhotos.length - 1;
-    }
-    const src = currentPhotographerPhotos[currentLigthboxIndex];
-    photoPlaceHolder.innerHTML = `<img src="${src}" />`; 
-
-    if (currentLigthboxIndex < 0){
-      currentLigthboxIndex = photoName.length - 1;
-    }
-    const nameSrc = photoName[currentLigthboxIndex]; 
-    photoNaneDom.innerHTML = `${nameSrc}` 
-  }
-});
-
 
 // Formulaire //
 
@@ -331,7 +330,7 @@ form.addEventListener("submit", (e) => {
     const prenomOK = validateString(prenom ,prenom.value, 2, errorPrenom, "Veuillez entre 2 ou plus de caracteres");
     const nomOk = validateString(nom ,nom.value, 2, errorNom, "Veuillez entre 2 ou plus de caracteres");
     const messageOk = validateString(message, message.value, 10, errorMessage, "Veuillez entre 10 ou plus de caracteres");
-    const emailOk = checkEmail(email, email.value, errorMail, "Veuillez entre une adresse mail valid");
+    const emailOk = checkEmail(email, email.value, errorMail, "Veuillez entre une adresse mail valide");
 
     if( prenomOK && nomOk && messageOk && emailOk){
         const formModal = document.getElementById('form-container');
@@ -348,7 +347,7 @@ function showModal(element){
   document.getElementById("form").addEventListener('click', () => {
     const formModal = document.getElementById('form-container');
     formModal.style.display = "block";
-    const nameOfThePhotographe = document.getElementById('nameOfThePhotopgraphe');
+    const nameOfThePhotographe = document.getElementById('name-photographe');
     const nameTemplate = `${element.name}`
     nameOfThePhotographe.innerHTML = nameTemplate;
   })
@@ -356,7 +355,7 @@ function showModal(element){
 
 // Fermeture du formulaire avec X //
 
-document.getElementById('X-button').addEventListener('click', () => {
+document.getElementById('close-button').addEventListener('click', () => {
     const formModal = document.getElementById('form-container');
     formModal.style.display = "none";
 })
