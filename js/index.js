@@ -23,7 +23,7 @@ function displayByDefault(dataJson) {
     <div class="photographerContainer">
       <a href="photographers.html?id=${photographe.id}">
         <div class="portrait">
-          <img src="${photographe.portrait}" alt="photo">
+          <img src="${photographe.portrait}" alt="photo de ${photographe.name}">
         </div>
         <h1 class="name">${photographe.name}</h1>
       </a>
