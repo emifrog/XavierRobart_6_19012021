@@ -104,27 +104,26 @@ function likesAndPrice(sum, photographerPrice){
     domDiv.appendChild(newDiv)
 }
 
-//increment likes on click
+//L likes
 function incrementLikesOnClick() {
-  const heartIcons = Array.from(document.getElementsByClassName('heartIcon')); // multiple heart icons
+  const heartIcons = Array.from(document.getElementsByClassName('heartIcon')); 
   heartIcons.forEach((likeIcon, index) => likeIcon.addEventListener('click', () => {
     
-    // if the index of current photo is in the Arrey RETURN the index and stop executin IF NOT run the code block
+  
     if (existingLikes.includes(index)) {return }
     else{
       const individualLikeBox = document.getElementsByClassName('photo-info');
       const totalLikesDivBox = document.getElementById("likesBox");
       likeIcon.classList.add('activeRed');
   
-      let likesAfterAddition = likesTable[index] + 1;  // add 1 like to the individual current photo
-      likesTable.splice(index, 1, likesAfterAddition); // replace the old value from the Array with the new value
+      let likesAfterAddition = likesTable[index] + 1; 
+      likesTable.splice(index, 1, likesAfterAddition); 
   
-      let globalNumberOfLikes = likesTable.reduce(function(a, b){return a + b;}); // return the sum of the array
+      let globalNumberOfLikes = likesTable.reduce(function(a, b){return a + b;}); 
   
       individualLikeBox[index].innerHTML = `<span>${likesAfterAddition}</span>`
       totalLikesDivBox.innerHTML = `<div>${globalNumberOfLikes}<i class="fas fa-heart"></i></div>`
     }
-      // add the index of liked item to existingLikes Array everytime we click a photo
       existingLikes.push(index)
   }))
 }
