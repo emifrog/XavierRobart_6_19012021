@@ -301,6 +301,7 @@ document.addEventListener('keydown', (key) => {
     const nameSrc = nomphoto[currentLigthboxIndex]; 
     nomphotoDom.innerHTML = `${nameSrc}` 
   }
+  
 });
 
 // Close //
