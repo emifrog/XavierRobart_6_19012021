@@ -5,7 +5,7 @@ let likesTable = [];
 let existingLikes = [];
 let modifiedArray = [];
 let JsonDATA;
-let nomphoto = [];
+let nomPhoto = [];
 
 // Methode Fetch //
 
@@ -71,7 +71,7 @@ function photographerWork(media){
         `
       newDiv.innerHTML = workTemplate;
       domDiv.appendChild(newDiv);
-      if ( 'image' in element) {currentPhotographerPhotos.push(element.image), nomphoto.push(element.photo)}
+      if ( 'image' in element) {currentPhotographerPhotos.push(element.image), nomPhoto.push(element.photo)}
       likesTable.push(element.likes);
     }})
     handleNextPrevButtons();
@@ -82,7 +82,7 @@ function photographerWork(media){
 
 function videoOrImage(image, video, element) {
   if ('image' in element){
-    return ` <img class="photos" aria-label="photo ${element.nomphoto}" src="${image}"> `
+    return ` <img class="photos" aria-label="photo ${element.nomPhoto}" src="${image}"> `
   }
   else if ('video' in element){
     return ` <iframe src="${video}" width="285px" height="255px" controls=0></iframe>`
@@ -182,8 +182,8 @@ trierParButtons.forEach((btn, index) => btn.addEventListener('click', () => {
   else if ( index == 2) {
     // Titre //
     modifiedArray = JsonDATA.media.sort((a, b) => {
-    if(a.nomphoto.toLowerCase() < b.nomphoto.toLowerCase()) { return -1;}
-    else if (a.nomphoto.toLowerCase() > b.nomphoto.toLowerCase()) {return 1;}
+    if(a.nomPhoto.toLowerCase() < b.nomPhoto.toLowerCase()) { return -1;}
+    else if (a.nomPhoto.toLowerCase() > b.nomPhoto.toLowerCase()) {return 1;}
     })
         document.querySelector("#photographers").innerHTML = "";;
         likesTable = [];
@@ -205,14 +205,14 @@ function openLightBox() {
 
       const photographersphotos = document.getElementById('photographers-photos');
       const lightboxcontainer = document.getElementById('lightbox-container');
-      const nomphotoDom = document.getElementById('photo');
+      const nomPhotoDom = document.getElementById('photo');
       const src = currentPhotographerPhotos[index];
-      const nameSrc = nomphoto[index];
+      const nameSrc = nomPhoto[index];
       
       lightboxcontainer.style.display = 'block';
       currentLigthboxIndex = index;   
       photographersphotos.innerHTML = `<img src="${src}" />`;
-      nomphotoDom.innerHTML = `${nameSrc}`  
+      nomPhotoDom.innerHTML = `${nameSrc}`  
     }))
 }
 
@@ -222,7 +222,7 @@ function handleNextPrevButtons() {
   const previousBtn = document.querySelector('.leftIcon');
   const nextBtn = document.querySelector('.rightIcon');
   const photographersphotos = document.getElementById('photographers-photos');
-  const nomphotoDom = document.getElementById('photo');
+  const nomPhotoDom = document.getElementById('photo');
 
   previousBtn.addEventListener('click', () => {
     currentLigthboxIndex -= 1;
@@ -233,10 +233,10 @@ function handleNextPrevButtons() {
     photographersphotos.innerHTML = `<img src="${src}" />`; 
 
     if (currentLigthboxIndex < 0){
-      currentLigthboxIndex = nomphoto.length - 1;
+      currentLigthboxIndex = nomPhoto.length - 1;
     }
     const nameSrc = nomphoto[currentLigthboxIndex]; 
-    nomphotoDom.innerHTML = `${nameSrc}` 
+    nomPhotoDom.innerHTML = `${nameSrc}` 
   });
 
   nextBtn.addEventListener('click', () => {
@@ -247,11 +247,11 @@ function handleNextPrevButtons() {
     const src = currentPhotographerPhotos[currentLigthboxIndex];
     photographersphotos.innerHTML = `<img src="${src}" />`;
 
-    if (currentLigthboxIndex > nomphoto.length - 1){
+    if (currentLigthboxIndex > nomPhoto.length - 1){
       currentLigthboxIndex = 0;    
    }
-   const nameSrc = nomphoto[currentLigthboxIndex]; 
-   nomphotoDom.innerHTML = `${nameSrc}`
+   const nameSrc = nomPhoto[currentLigthboxIndex]; 
+   nomPhotoDom.innerHTML = `${nameSrc}`
   })
 }
 
@@ -267,7 +267,7 @@ document.addEventListener('keydown', (key) => {
 
   // Fleche Droite //
   else if(key.code == "ArrowRight"){
-    const nomphotoDom = document.getElementById('photo');
+    const nomPhotoDom = document.getElementById('nomPhoto');
 
     currentLigthboxIndex += 1;
     if (currentLigthboxIndex > currentPhotographerPhotos.length - 1) {
@@ -276,16 +276,16 @@ document.addEventListener('keydown', (key) => {
     const src = currentPhotographerPhotos[currentLigthboxIndex];
     photographersphotos.innerHTML = `<img src="${src}" />`;
     
-    if (currentLigthboxIndex > nomphoto.length - 1){
+    if (currentLigthboxIndex > nomPhoto.length - 1){
       currentLigthboxIndex = 0;    
    }
-   const nameSrc = nomphoto[currentLigthboxIndex]; 
-   nomphotoDom.innerHTML = `${nameSrc}`
+   const nameSrc = nomPhoto[currentLigthboxIndex]; 
+   nomPhotoDom.innerHTML = `${nameSrc}`
   }
 
   // Fleche Gauche //
   else if(key.code == "ArrowLeft"){
-    const nomphotoDom = document.getElementById('photo');
+    const nomPhotoDom = document.getElementById('nomPhoto');
 
     currentLigthboxIndex -= 1;
     if (currentLigthboxIndex < 0) {
@@ -295,10 +295,10 @@ document.addEventListener('keydown', (key) => {
     photographersphotos.innerHTML = `<img src="${src}" />`; 
 
     if (currentLigthboxIndex < 0){
-      currentLigthboxIndex = nomphoto.length - 1;
+      currentLigthboxIndex = nomPhoto.length - 1;
     }
-    const nameSrc = nomphoto[currentLigthboxIndex]; 
-    nomphotoDom.innerHTML = `${nameSrc}` 
+    const nameSrc = nomPhoto[currentLigthboxIndex]; 
+    nomPhotoDom.innerHTML = `${nameSrc}` 
   }
   
 });
