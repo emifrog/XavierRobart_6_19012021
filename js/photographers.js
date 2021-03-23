@@ -216,48 +216,113 @@ function openLightBox() {
     }))
 }
 
+// // Defilement des photos //
+
+// function handleNextPrevButtons() {
+//   const previousBtn = document.querySelector('.leftIcon');
+//   const nextBtn = document.querySelector('.rightIcon');
+//   const photographersphotos = document.getElementById('photographers-photos');
+//   const nomPhotoDom = document.getElementById('photo');
+
+//   previousBtn.addEventListener('click', () => {
+//     currentLigthboxIndex -= 1;
+//     if (currentLigthboxIndex < 0) {
+//       currentLigthboxIndex = currentPhotographerPhotos.length - 1;
+//     }
+//     const src = currentPhotographerPhotos[currentLigthboxIndex];
+//     photographersphotos.innerHTML = `<img src="${src}" />`; 
+
+//     if (currentLigthboxIndex < 0){
+//       currentLigthboxIndex = nomPhoto.length - 1;
+//     }
+//     const nameSrc = nomphoto[currentLigthboxIndex]; 
+//     nomPhotoDom.innerHTML = `${nameSrc}` 
+//   });
+
+//   nextBtn.addEventListener('click', () => {
+//     currentLigthboxIndex += 1;
+//     if (currentLigthboxIndex > currentPhotographerPhotos.length - 1) {
+//       currentLigthboxIndex = 0;
+//     }
+//     const src = currentPhotographerPhotos[currentLigthboxIndex];
+//     photographersphotos.innerHTML = `<img src="${src}" />`;
+
+//     if (currentLigthboxIndex > nomPhoto.length - 1){
+//       currentLigthboxIndex = 0;    
+//    }
+//    const nameSrc = nomPhoto[currentLigthboxIndex]; 
+//    nomPhotoDom.innerHTML = `${nameSrc}`
+//   })
+// }
+
+// // Defilement des photos au clavier //
+// document.addEventListener('keydown', (key) => {
+
+//   const photographersphotos = document.getElementById('photographers-photos');
+//   const nomPhotoDom = document.getElementById('photo');
+
+//   // Button Esc //
+//   if(key.code == "Escape"){
+//     const lightboxcontainer = document.getElementById('lightbox-container');
+//     lightboxcontainer.style.display = 'none';
+//   }
+
+//   // Fleche Droite //
+//   else if(key.code == "ArrowRight"){
+//     console.log("DROITE");
+
+//     currentLigthboxIndex += 1;
+//     if (currentLigthboxIndex > currentPhotographerPhotos.length - 1) {
+//       currentLigthboxIndex = 0;
+//     }
+//     const src = currentPhotographerPhotos[currentLigthboxIndex];
+//     photographersphotos.innerHTML = `<img src="${src}" />`;
+    
+//     if (currentLigthboxIndex > nomPhoto.length - 1){
+//       currentLigthboxIndex = 0;    
+//    }
+//    const nameSrc = nomPhoto[currentLigthboxIndex]; 
+//    nomPhotoDom.innerHTML = `${nameSrc}`
+//   }
+
+//   // Fleche Gauche //
+//   else if(key.code == "ArrowLeft"){
+//     console.log("GAUCHE");
+
+//     currentLigthboxIndex -= 1;
+//     if (currentLigthboxIndex < 0) {
+//       currentLigthboxIndex = currentPhotographerPhotos.length - 1;
+//     }
+//     const src = currentPhotographerPhotos[currentLigthboxIndex];
+//     photographersphotos.innerHTML = `<img src="${src}" />`; 
+
+//     if (currentLigthboxIndex < 0){
+//       currentLigthboxIndex = nomPhoto.length - 1;
+//     }
+//     const nameSrc = nomPhoto[currentLigthboxIndex]; 
+//     nomPhotoDom.innerHTML = `${nameSrc}` 
+//   }
+  
+// });
 // Defilement des photos //
 
 function handleNextPrevButtons() {
   const previousBtn = document.querySelector('.leftIcon');
   const nextBtn = document.querySelector('.rightIcon');
-  const photographersphotos = document.getElementById('photographers-photos');
-  const nomPhotoDom = document.getElementById('photo');
 
   previousBtn.addEventListener('click', () => {
     currentLigthboxIndex -= 1;
-    if (currentLigthboxIndex < 0) {
-      currentLigthboxIndex = currentPhotographerPhotos.length - 1;
-    }
-    const src = currentPhotographerPhotos[currentLigthboxIndex];
-    photographersphotos.innerHTML = `<img src="${src}" />`; 
-
-    if (currentLigthboxIndex < 0){
-      currentLigthboxIndex = nomPhoto.length - 1;
-    }
-    const nameSrc = nomphoto[currentLigthboxIndex]; 
-    nomPhotoDom.innerHTML = `${nameSrc}` 
+    moveImages(); 
   });
 
   nextBtn.addEventListener('click', () => {
     currentLigthboxIndex += 1;
-    if (currentLigthboxIndex > currentPhotographerPhotos.length - 1) {
-      currentLigthboxIndex = 0;
-    }
-    const src = currentPhotographerPhotos[currentLigthboxIndex];
-    photographersphotos.innerHTML = `<img src="${src}" />`;
-
-    if (currentLigthboxIndex > nomPhoto.length - 1){
-      currentLigthboxIndex = 0;    
-   }
-   const nameSrc = nomPhoto[currentLigthboxIndex]; 
-   nomPhotoDom.innerHTML = `${nameSrc}`
+    moveImages();
   })
 }
 
 // Defilement des photos au clavier //
 document.addEventListener('keydown', (key) => {
-
 
   // Button Esc //
   if(key.code == "Escape"){
@@ -267,41 +332,42 @@ document.addEventListener('keydown', (key) => {
 
   // Fleche Droite //
   else if(key.code == "ArrowRight"){
-    const nomPhotoDom = document.getElementById('nomPhoto');
-
     currentLigthboxIndex += 1;
-    if (currentLigthboxIndex > currentPhotographerPhotos.length - 1) {
-      currentLigthboxIndex = 0;
-    }
-    const src = currentPhotographerPhotos[currentLigthboxIndex];
-    photographersphotos.innerHTML = `<img src="${src}" />`;
-    
-    if (currentLigthboxIndex > nomPhoto.length - 1){
-      currentLigthboxIndex = 0;    
-   }
-   const nameSrc = nomPhoto[currentLigthboxIndex]; 
-   nomPhotoDom.innerHTML = `${nameSrc}`
+    moveImages();
   }
 
   // Fleche Gauche //
   else if(key.code == "ArrowLeft"){
-    const nomPhotoDom = document.getElementById('nomPhoto');
-
     currentLigthboxIndex -= 1;
-    if (currentLigthboxIndex < 0) {
-      currentLigthboxIndex = currentPhotographerPhotos.length - 1;
-    }
-    const src = currentPhotographerPhotos[currentLigthboxIndex];
-    photographersphotos.innerHTML = `<img src="${src}" />`; 
-
-    if (currentLigthboxIndex < 0){
-      currentLigthboxIndex = nomPhoto.length - 1;
-    }
-    const nameSrc = nomPhoto[currentLigthboxIndex]; 
-    nomPhotoDom.innerHTML = `${nameSrc}` 
+    moveImages();
   }
   
 });
+
+function moveImages(){
+  const photographersphotos = document.getElementById('photographers-photos');
+  const nomPhotoDom = document.getElementById('photo');
+
+  if (currentLigthboxIndex < 0) {
+    currentLigthboxIndex = currentPhotographerPhotos.length - 1;
+  }
+  else if (currentLigthboxIndex > currentPhotographerPhotos.length - 1) {
+    currentLigthboxIndex = 0;
+  }
+
+  const src = currentPhotographerPhotos[currentLigthboxIndex];
+  photographersphotos.innerHTML = `<img src="${src}" />`; 
+
+  if (currentLigthboxIndex < 0){
+    currentLigthboxIndex = nomPhoto.length - 1;
+  }
+  else if (currentLigthboxIndex > nomPhoto.length - 1){
+    currentLigthboxIndex = 0;    
+  }
+
+  const nameSrc = nomPhoto[currentLigthboxIndex]; 
+  nomPhotoDom.innerHTML = `${nameSrc}` 
+}
 
 // Close //
 
