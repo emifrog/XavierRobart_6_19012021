@@ -18,7 +18,6 @@ fetch('./../JSON.json')
       JsonDATA = JsonData;
 })
 
-
 // Photographers Profil //
 
 function photographerProfil(JsonData){
@@ -62,7 +61,7 @@ function photographerWork(media){
       const workTemplate = `         
         <div class="photo-box"> 
             <div class="photo" data-id=${element.id}>
-                ${videoOrImage(element.image, element.video, element)}
+                ${videoOrimage(element.image, element.video, element)}
             </div>   
             <div class="text">
                 <p> ${element.photo}<b>${element.price} €  &nbsp <span class='photo-info'>${element.likes}</span> <i class="fas fa-heart heartIcon"></i></b></p>
@@ -80,7 +79,7 @@ function photographerWork(media){
 
 //Verifie si les données sont des images ou des videos sur le modele
 
-function videoOrImage(image, video, element) {
+function videoOrimage(image, video, element) {
   if ('image' in element){
     return ` <img class="photos" aria-label="photo ${element.nomPhoto}" src="${image}"> `
   }
@@ -216,94 +215,6 @@ function openLightBox() {
     }))
 }
 
-// // Defilement des photos //
-
-// function handleNextPrevButtons() {
-//   const previousBtn = document.querySelector('.leftIcon');
-//   const nextBtn = document.querySelector('.rightIcon');
-//   const photographersphotos = document.getElementById('photographers-photos');
-//   const nomPhotoDom = document.getElementById('photo');
-
-//   previousBtn.addEventListener('click', () => {
-//     currentLigthboxIndex -= 1;
-//     if (currentLigthboxIndex < 0) {
-//       currentLigthboxIndex = currentPhotographerPhotos.length - 1;
-//     }
-//     const src = currentPhotographerPhotos[currentLigthboxIndex];
-//     photographersphotos.innerHTML = `<img src="${src}" />`; 
-
-//     if (currentLigthboxIndex < 0){
-//       currentLigthboxIndex = nomPhoto.length - 1;
-//     }
-//     const nameSrc = nomphoto[currentLigthboxIndex]; 
-//     nomPhotoDom.innerHTML = `${nameSrc}` 
-//   });
-
-//   nextBtn.addEventListener('click', () => {
-//     currentLigthboxIndex += 1;
-//     if (currentLigthboxIndex > currentPhotographerPhotos.length - 1) {
-//       currentLigthboxIndex = 0;
-//     }
-//     const src = currentPhotographerPhotos[currentLigthboxIndex];
-//     photographersphotos.innerHTML = `<img src="${src}" />`;
-
-//     if (currentLigthboxIndex > nomPhoto.length - 1){
-//       currentLigthboxIndex = 0;    
-//    }
-//    const nameSrc = nomPhoto[currentLigthboxIndex]; 
-//    nomPhotoDom.innerHTML = `${nameSrc}`
-//   })
-// }
-
-// // Defilement des photos au clavier //
-// document.addEventListener('keydown', (key) => {
-
-//   const photographersphotos = document.getElementById('photographers-photos');
-//   const nomPhotoDom = document.getElementById('photo');
-
-//   // Button Esc //
-//   if(key.code == "Escape"){
-//     const lightboxcontainer = document.getElementById('lightbox-container');
-//     lightboxcontainer.style.display = 'none';
-//   }
-
-//   // Fleche Droite //
-//   else if(key.code == "ArrowRight"){
-//     console.log("DROITE");
-
-//     currentLigthboxIndex += 1;
-//     if (currentLigthboxIndex > currentPhotographerPhotos.length - 1) {
-//       currentLigthboxIndex = 0;
-//     }
-//     const src = currentPhotographerPhotos[currentLigthboxIndex];
-//     photographersphotos.innerHTML = `<img src="${src}" />`;
-    
-//     if (currentLigthboxIndex > nomPhoto.length - 1){
-//       currentLigthboxIndex = 0;    
-//    }
-//    const nameSrc = nomPhoto[currentLigthboxIndex]; 
-//    nomPhotoDom.innerHTML = `${nameSrc}`
-//   }
-
-//   // Fleche Gauche //
-//   else if(key.code == "ArrowLeft"){
-//     console.log("GAUCHE");
-
-//     currentLigthboxIndex -= 1;
-//     if (currentLigthboxIndex < 0) {
-//       currentLigthboxIndex = currentPhotographerPhotos.length - 1;
-//     }
-//     const src = currentPhotographerPhotos[currentLigthboxIndex];
-//     photographersphotos.innerHTML = `<img src="${src}" />`; 
-
-//     if (currentLigthboxIndex < 0){
-//       currentLigthboxIndex = nomPhoto.length - 1;
-//     }
-//     const nameSrc = nomPhoto[currentLigthboxIndex]; 
-//     nomPhotoDom.innerHTML = `${nameSrc}` 
-//   }
-  
-// });
 // Defilement des photos //
 
 function handleNextPrevButtons() {
